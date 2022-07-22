@@ -1,0 +1,68 @@
+{
+  "name": "expo-and-typescript",
+  "version": "0.0.0",
+  "description": "Showcase of an Expo app coded in TypeScript.",
+  "author": {
+    "email": "jan@aagaard.net",
+    "name": "Jan Aagaard"
+  },
+  "private": true,
+  "license": "MIT",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "android": "yarn run start --android",
+    "check-types": "tsc",
+    "ios": "yarn run start --ios",
+    "lint": "eslint --format unix \"**/*.ts\" \"**/*.tsx\"",
+    "start": "yarn install && expo start",
+    "validate": "yarn install --frozen-lockfile && yarn run lint && yarn run check-types"
+  },
+  "engines": {
+    "node": ">=10",
+    "yarn": ">=1.1"
+  },
+  "dependencies": {
+    "@react-navigation/native": "^6.0.10",
+    "@react-navigation/stack": "^6.2.1",
+    "expo": "^44.0.6",
+    "expo-analytics-amplitude": "~11.1.1",
+    "expo-apple-authentication": "~4.1.0",
+    "expo-asset": "~8.4.6",
+    "expo-av": "~10.2.1",
+    "expo-barcode-scanner": "~11.2.1",
+    "expo-blur": "~11.0.0",
+    "expo-camera": "~12.1.2",
+    "expo-constants": "~13.0.2",
+    "expo-facebook": "~12.1.1",
+    "expo-font": "~10.0.5",
+    "expo-linear-gradient": "~11.0.3",
+    "expo-local-authentication": "~12.1.1",
+    "expo-sensors": "~11.1.1",
+    "react": "17.0.1",
+    "react-native": "0.64.3",
+    "react-native-gesture-handler": "~2.1.3",
+    "react-native-maps": "0.29.4",
+    "react-native-reanimated": "~2.3.3",
+    "react-native-safe-area-context": "3.3.2",
+    "react-native-screens": "~3.10.2",
+    "react-native-svg": "12.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@types/react": "~17.0.44",
+    "@types/react-native": "~0.64.24",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "babel-preset-expo": "9.0.2",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "expo-cli": "^5.4.3",
+    "prettier": "^2.6.2",
+    "typescript": "~4.3.5"
+  },
+  "resolutions": {
+    "@types/react": "~17.0.44"
+  }
+}
