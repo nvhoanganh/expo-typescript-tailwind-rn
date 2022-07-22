@@ -1,6 +1,7 @@
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { Component } from "react";
 import { Button, ScrollView } from "react-native";
+import tw from 'twrnc';
 
 type HomeStackParametersList = {
   Accelerometer: undefined;
@@ -32,9 +33,7 @@ export class HomeScreen extends Component<Props> {
 
     return (
       <ScrollView
-        style={{
-          flex: 1,
-        }}
+        style={tw`p-4 android:pt-2 bg-gray-300 dark:bg-black`}
       >
         <Button
           onPress={() => navigate("Accelerometer")}
