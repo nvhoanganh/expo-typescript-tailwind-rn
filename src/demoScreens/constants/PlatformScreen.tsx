@@ -1,4 +1,5 @@
 import Constants from "expo-constants";
+import React from "react";
 import { Text } from "react-native";
 
 export const PlatformScreen = () => (
