@@ -1,4 +1,5 @@
 import { BlurView } from "expo-blur";
+import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 
 const expoImageUrl =
