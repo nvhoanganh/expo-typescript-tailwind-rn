@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Expo and TypeScript",
-    "description": "Showcase of an Expo app coded in TypeScript.",
+    "description": "Showcase of an Expo app coded in TypeScript with Tailwind CSS.",
     "slug": "expo-and-typescript",
     "privacy": "public",
     "platforms": ["ios", "android"],
@@ -22,6 +22,6 @@
       "supportsTablet": true,
       "usesAppleSignIn": true
     },
-    "githubUrl": "https://github.com/janaagaard75/expo-and-typescript"
+    "githubUrl": "https://github.com/jongan69/expo-typescript-tailwind-rn"
   }
 }

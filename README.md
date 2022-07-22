@@ -1,12 +1,8 @@
-# React Native using Expo and Typescript
+# React Native using Expo and Typescript with Tailwind CSS
 
-<img src="../../raw/master/assets/app-icon.png" height="50">
-
-This is a [React Native](https://facebook.github.io/react-native/) demo app using the [Expo framework](https://expo.io) and written in [TypeScript](http://www.typescriptlang.org). It uses the [managed workflow](https://docs.expo.io/introduction/managed-vs-bare/).
+This is a [React Native](https://facebook.github.io/react-native/) demo app using the [Expo framework](https://expo.io) and written in [TypeScript](http://www.typescriptlang.org). It uses the [managed workflow](https://docs.expo.io/introduction/managed-vs-bare/) and uses Tailwind CSS for some styling.
 
 This repo used to also contain a type definition file for Expo. That work was merged into the [`@types/expo`](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/expo) package. `@types/expo` is now deprecated in favor of definition types includes with the `expo` package. TypeScript FTW!
-
-![Screen shot](../../raw/master/screen-shot.png)
 
 ## Prerequisites
 
@@ -83,7 +79,7 @@ When upgrading Expo, `expo-cli` will also upgrade the versions of all the packag
 
 ## Troubleshooting
 
-If you have issues running the app it may help clearing the React Native packager cache. Use the command `yarn expo start --clear` to do this.
+If you have issues running the app it may help clearing the React Native packager cache. Use the command `yarn expo start -c` to do this.
 
 More tips found in [this thread on the Expo Forum](https://forums.expo.io/t/how-to-clear-the-react-native-packager/1352).
 
