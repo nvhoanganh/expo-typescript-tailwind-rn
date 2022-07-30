@@ -2,6 +2,8 @@
 
 This is a [React Native](https://facebook.github.io/react-native/) demo app using the [Expo framework](https://expo.io) and written in [TypeScript](http://www.typescriptlang.org). It uses the [managed workflow](https://docs.expo.io/introduction/managed-vs-bare/) and uses [Tailwind](https://github.com/jaredh159/tailwind-react-native-classnames) for some styling.
 
+[![CodeQL](https://github.com/jongan69/expo-typescript-tailwind-rn/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/jongan69/expo-typescript-tailwind-rn/actions/workflows/codeql-analysis.yml)
+
 This repo used to also contain a type definition file for Expo. That work was merged into the [`@types/expo`](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/expo) package. `@types/expo` is now deprecated in favor of definition types includes with the `expo` package. TypeScript FTW!
 
 ## Prerequisites
