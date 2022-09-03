@@ -1,8 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import React from 'react';
-import { TailwindProvider } from 'tailwind-rn';
-import utilities from '../tailwind.json';
+import React from "react";
+import { TailwindProvider } from "tailwind-rn";
+import utilities from "../tailwind.json";
 import { AccelerometerScreen } from "./demoScreens/AccelerometerScreen";
 import { AmplitudeScreen } from "./demoScreens/AmplitudeScreen";
 import { AppleAuthenticationScreen } from "./demoScreens/AppleAuthenticationScreen";
@@ -21,10 +21,10 @@ import { GyroscopeScreen } from "./demoScreens/GyroscopeScreen";
 import { LinearGradientScreen } from "./demoScreens/LinearGradientScreen";
 import { LocalAuthenticationScreen } from "./demoScreens/LocalAuthenticationScreen";
 import { MapViewScreen } from "./demoScreens/MapViewScreen";
+import RecordAudioScreen from "./demoScreens/RecordAudioScreen";
 import { SvgScreen } from "./demoScreens/SvgScreen";
 import { VectorIconsScreen } from "./demoScreens/VectorIconsScreen";
 import { HomeScreen } from "./HomeScreen";
-
 
 const Stack = createStackNavigator();
 
@@ -62,6 +62,11 @@ export const App = () => {
             name="Audio"
             component={AudioScreen}
             options={{ title: "Audio" }}
+          />
+          <Stack.Screen
+            name="RecordAudio"
+            component={RecordAudioScreen}
+            options={{ title: "Record Audio" }}
           />
           <Stack.Screen
             name="BarCodeScanner"

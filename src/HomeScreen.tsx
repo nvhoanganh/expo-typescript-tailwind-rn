@@ -86,74 +86,16 @@ export const HomeScreen = (props: Props) => {
           onPress={handleSubmit(onSubmit)}
         />
       </View>
-      <Button
-        onPress={() => navigate("Audio")}
-        title={"My Favourite song"}
-      />
-      {/* <Button
-          onPress={() => navigate("Amplitude")}
-          title={"Amplitude"}
-        />
-        <Button
-          onPress={() => navigate("AppleAuthentication")}
-          title={"Apple Authentication"}
-        />
-        <Button
-          onPress={() => navigate("Asset")}
-          title={"Asset"}
-        />
+      <View style={tw`pt-8`}>
         <Button
           onPress={() => navigate("Audio")}
-          title={"Audio"}
+          title={"Hear My Favourite song"}
         />
         <Button
-          onPress={() => navigate("BarCodeScanner")}
-          title={"Bar Code Scanner"}
+          onPress={() => navigate("RecordAudio")}
+          title={"Record audio"}
         />
-        <Button
-          onPress={() => navigate("BlurView")}
-          title={"Blur View"}
-        />
-        <Button
-          onPress={() => navigate("Camera")}
-          title={"Camera"}
-        />
-        <Button
-          onPress={() => navigate("Constants")}
-          title={"Constants"}
-        />
-        <Button
-          onPress={() => navigate("Facebook")}
-          title={"Facebook"}
-        />
-        <Button
-          onPress={() => navigate("Font")}
-          title={"Font"}
-        />
-        <Button
-          onPress={() => navigate("Gyroscope")}
-          title={"Gyroscope"}
-        />
-        <Button
-          onPress={() => navigate("LinearGradient")}
-          title={"Linear Gradient"}
-        />
-        <Button
-          onPress={() => navigate("LocalAuthentication")}
-          title={"Local Authentication"}
-        />
-        <Button
-          onPress={() => navigate("MapView")}
-          title={"Map View"}
-        />
-        <Button
-          onPress={() => navigate("Svg")}
-          title={"Svg"}
-        />
-        <Button
-          onPress={() => navigate("VectorIcons")}
-          title={"Vector Icons"}
-        /> */}
+      </View>
     </ScrollView>
   );
 };
