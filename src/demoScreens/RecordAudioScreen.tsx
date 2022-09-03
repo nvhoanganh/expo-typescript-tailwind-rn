@@ -1,9 +1,11 @@
 import { Audio } from "expo-av";
 import * as React from "react";
-import { Button, StyleSheet, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
+import tw from "twrnc";
 
 export default function App() {
   const [recording, setRecording] = React.useState();
+  const [recordingFileName, setRecordingFileName] = React.useState("");
 
   const startRecording = async () => {
     try {
@@ -15,7 +17,7 @@ export default function App() {
       });
       console.log("Starting recording..");
       const { recording } = await Audio.Recording.createAsync(
-        Audio.RecordingOptionsPresets.HIGH_QUALITY
+        Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
       );
       setRecording(recording);
       console.log("Recording started");
@@ -27,9 +29,18 @@ export default function App() {
   const stopRecording = async () => {
     console.log("Stopping recording..");
     setRecording(undefined);
+
     await recording.stopAndUnloadAsync();
     const uri = recording.getURI();
-    console.log("Recording stopped and stored at", uri);
+    setRecordingFileName(uri);
+
+    console.log("Playing recording at", uri);
+    await Audio.Sound.createAsync(
+      { uri: uri },
+      {
+        shouldPlay: true,
+      }
+    );
   };
 
   return (
@@ -38,6 +49,13 @@ export default function App() {
         title={recording ? "Stop Recording" : "Start Recording"}
         onPress={recording ? stopRecording : startRecording}
       />
+
+      {recordingFileName ? (
+        <>
+          <Text style={tw`text-center p-3 text-3xl`}>Playing:</Text>
+          <Text style={tw`text-center py-5 text-sm`}>{recordingFileName}</Text>
+        </>
+      ) : null}
     </View>
   );
 }
