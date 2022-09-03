@@ -39,7 +39,6 @@ interface Props {
 const Input = ({ control, name }: { control: any; name: string }) => {
   const { field } = useController({
     control,
-    defaultValue: "",
     name: name,
   });
   return (
@@ -53,7 +52,11 @@ const Input = ({ control, name }: { control: any; name: string }) => {
 
 export const HomeScreen = (props: Props) => {
   const navigate = props.navigation.navigate;
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      name: "The name's Neilson,Brice Neilson",
+    },
+  });
 
   const onSubmit = (data) => {
     Alert.alert(JSON.stringify(data));
@@ -61,9 +64,9 @@ export const HomeScreen = (props: Props) => {
 
   return (
     <ScrollView style={tw`p-2`}>
-      <Text style={tw`text-center py-3 text-3xl`}>Brice Neilson</Text>
+      <Text style={tw`text-center p-3 text-3xl`}>Brice Neilson</Text>
       <View style={tw`flex justify-center`}>
-        <Text style={tw`text-center py-3 text-md`}>
+        <Text style={tw`text-center py-5 text-lg`}>
           Chief Technology Officer
         </Text>
         <Image
@@ -84,8 +87,8 @@ export const HomeScreen = (props: Props) => {
         />
       </View>
       <Button
-        onPress={() => navigate("Accelerometer")}
-        title={"View Profile"}
+        onPress={() => navigate("Audio")}
+        title={"My Favourite song"}
       />
       {/* <Button
           onPress={() => navigate("Amplitude")}
