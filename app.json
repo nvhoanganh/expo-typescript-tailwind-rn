@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Expo and TypeScript",
+    "name": "React native tailwind hook form",
     "description": "Showcase of an Expo app coded in TypeScript with Tailwind CSS.",
     "slug": "expo-and-typescript",
     "privacy": "public",
