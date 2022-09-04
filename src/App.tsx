@@ -8,7 +8,6 @@ import { AmplitudeScreen } from "./demoScreens/AmplitudeScreen";
 import { AppleAuthenticationScreen } from "./demoScreens/AppleAuthenticationScreen";
 import { AssetScreen } from "./demoScreens/AssetScreen";
 import { AudioScreen } from "./demoScreens/AudioScreen";
-import { BarCodeScannerScreen } from "./demoScreens/BarCodeScannerScreen";
 import { BlurViewScreen } from "./demoScreens/BlurViewScreen";
 import { CameraScreen } from "./demoScreens/CameraScreen";
 import { ConstantsScreen } from "./demoScreens/constants/ConstantsScreen";
@@ -22,6 +21,7 @@ import { LinearGradientScreen } from "./demoScreens/LinearGradientScreen";
 import { LocalAuthenticationScreen } from "./demoScreens/LocalAuthenticationScreen";
 import LocationService from "./demoScreens/LocationService";
 import { MapViewScreen } from "./demoScreens/MapViewScreen";
+import QRCodeScanner from "./demoScreens/QRCodeScanner";
 import RecordAudioScreen from "./demoScreens/RecordAudioScreen";
 import { SvgScreen } from "./demoScreens/SvgScreen";
 import { VectorIconsScreen } from "./demoScreens/VectorIconsScreen";
@@ -76,7 +76,7 @@ export const App = () => {
           />
           <Stack.Screen
             name="BarCodeScanner"
-            component={BarCodeScannerScreen}
+            component={QRCodeScanner}
             options={{ title: "Bar Code Scanner" }}
           />
           <Stack.Screen
