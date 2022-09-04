@@ -54,7 +54,7 @@ export const HomeScreen = (props: Props) => {
   const navigate = props.navigation.navigate;
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      name: "The name's Neilson,Brice Neilson",
+      name: "The name's Bond, James Bond",
     },
   });
 
@@ -64,14 +64,12 @@ export const HomeScreen = (props: Props) => {
 
   return (
     <ScrollView style={tw`p-2`}>
-      <Text style={tw`text-center p-3 text-3xl`}>Brice Neilson</Text>
+      <Text style={tw`text-center p-3 text-3xl`}>James Bond</Text>
       <View style={tw`flex justify-center`}>
-        <Text style={tw`text-center py-5 text-lg`}>
-          Chief Technology Officer
-        </Text>
+        <Text style={tw`text-center py-5 text-lg`}>007</Text>
         <Image
           source={{
-            uri: "https://images.ctfassets.net/6asdyln2d6ar/6G4sPmUxW3EZjMl1iDweMi/5021cdfa89fccf64de9150f3bfc2423b/Brice-s_Profile_Photo.png",
+            uri: "https://static.wikia.nocookie.net/jamesbond/images/b/b2/James_Bond_%28Sean_Connery%29_-_Profile.jpg/revision/latest?cb=20220103094711",
           }}
           style={{ width: 150, height: 150, alignSelf: "center" }}
         />
