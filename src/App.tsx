@@ -205,32 +205,59 @@ export const App = () => {
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              return (
-                <MaterialCommunityIcons
-                  name={route.name}
-                  size={size}
-                  color={"#0096FF"}
-                />
-              );
-            },
+            headerShown: false,
             tabBarActiveTintColor: "#0096FF",
+            tabBarShowLabel: false,
           })}
         >
           <Tab.Screen
-            name="home"
+            name="Home"
             component={HomeScreen}
-            options={{ tabBarBadge: 3, title: "Home" }}
+            options={{
+              tabBarBadge: 3,
+              title: "Home",
+              tabBarIcon: ({ focused, color, size }) => {
+                return (
+                  <MaterialCommunityIcons
+                    name="home"
+                    size={size}
+                    color={"#0096FF"}
+                  />
+                );
+              },
+            }}
           />
           <Tab.Screen
-            name="cast-audio-variant"
+            name="Audio"
             component={AudioScreen}
-            options={{ title: "Audio" }}
+            options={{
+              title: "Audio",
+              tabBarIcon: ({ focused, color, size }) => {
+                return (
+                  <MaterialCommunityIcons
+                    name="cast-audio-variant"
+                    size={size}
+                    color={"#0096FF"}
+                  />
+                );
+              },
+            }}
           />
           <Tab.Screen
-            name="camera"
+            name="Camera"
             component={CameraScreen}
-            options={{ title: "Camera" }}
+            options={{
+              title: "Camera",
+              tabBarIcon: ({ focused, color, size }) => {
+                return (
+                  <MaterialCommunityIcons
+                    name="camera"
+                    size={size}
+                    color={"#0096FF"}
+                  />
+                );
+              },
+            }}
           />
         </Tab.Navigator>
       </NavigationContainer>
