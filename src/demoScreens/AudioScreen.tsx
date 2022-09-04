@@ -1,51 +1,58 @@
 import { Audio } from "expo-av";
-import React, { useEffect, useState } from "react";
-import { Linking, Text, View } from "react-native";
+import React, { useState } from "react";
+import { Button, Linking, Text, View } from "react-native";
+import tw from "twrnc";
 
 export const AudioScreen = () => {
-  const [soundLoaded, setSoundLoaded] = useState(false);
-
-  useEffect(() => {
-    playSound();
-  }, []);
+  const [soundLoaded, setSoundLoaded] = useState<Audio.Sound>();
 
   const playSound = async () => {
-    await Audio.Sound.createAsync(
+    const { sound } = await Audio.Sound.createAsync(
       require("../../assets/bensound-thejazzpiano.mp3"),
       {
         shouldPlay: true,
       }
     );
 
-    setSoundLoaded(true);
+    setSoundLoaded(sound);
   };
 
-  if (!soundLoaded) {
-    return <Text>Loading sound...</Text>;
-  }
+  const stopSound = async () => {
+    if (soundLoaded) {
+      await soundLoaded.stopAsync();
+    }
+  };
 
   return (
-    <View
-      style={{
-        alignItems: "center",
-        flex: 1,
-        justifyContent: "center",
-      }}
-    >
-      <Text>
-        Music from{" "}
-        <Text
-          style={{ color: "blue" }}
-          onPress={() =>
-            Linking.openURL(
-              "https://www.bensound.com/royalty-free-music/track/the-jazz-piano"
-            )
-          }
-        >
-          www.bensound.com
+    <>
+      <View style={tw`py-16 flex justify-center items-center`}>
+        <Text>
+          Music from{" "}
+          <Text
+            style={{ color: "blue" }}
+            onPress={() =>
+              Linking.openURL(
+                "https://www.bensound.com/royalty-free-music/track/the-jazz-piano"
+              )
+            }
+          >
+            www.bensound.com
+          </Text>
         </Text>
-        .
-      </Text>
-    </View>
+      </View>
+      <View style={tw`pt-8`}>
+        {!soundLoaded ? (
+          <Button
+            onPress={playSound}
+            title={"Play Now"}
+          />
+        ) : (
+          <Button
+            onPress={stopSound}
+            title={"Stop Playing"}
+          />
+        )}
+      </View>
+    </>
   );
 };

@@ -1,38 +1,88 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 import { TailwindProvider } from "tailwind-rn";
+import tw from "twrnc";
 import utilities from "../tailwind.json";
-import { AccelerometerScreen } from "./demoScreens/AccelerometerScreen";
-import { AmplitudeScreen } from "./demoScreens/AmplitudeScreen";
-import { AppleAuthenticationScreen } from "./demoScreens/AppleAuthenticationScreen";
-import { AssetScreen } from "./demoScreens/AssetScreen";
 import { AudioScreen } from "./demoScreens/AudioScreen";
-import { BlurViewScreen } from "./demoScreens/BlurViewScreen";
 import { CameraScreen } from "./demoScreens/CameraScreen";
-import { ConstantsScreen } from "./demoScreens/constants/ConstantsScreen";
-import { ManifestScreen } from "./demoScreens/constants/ManifestScreen";
-import { PlatformScreen } from "./demoScreens/constants/PlatformScreen";
-import { SystemFontsScreen } from "./demoScreens/constants/SystemFontsScreen";
-import { FacebookScreen } from "./demoScreens/FacebookScreen";
-import { FontScreen } from "./demoScreens/FontScreen";
-import { GyroscopeScreen } from "./demoScreens/GyroscopeScreen";
-import { LinearGradientScreen } from "./demoScreens/LinearGradientScreen";
-import { LocalAuthenticationScreen } from "./demoScreens/LocalAuthenticationScreen";
-import LocationService from "./demoScreens/LocationService";
-import { MapViewScreen } from "./demoScreens/MapViewScreen";
-import QRCodeScanner from "./demoScreens/QRCodeScanner";
-import RecordAudioScreen from "./demoScreens/RecordAudioScreen";
-import { SvgScreen } from "./demoScreens/SvgScreen";
-import { VectorIconsScreen } from "./demoScreens/VectorIconsScreen";
 import { HomeScreen } from "./HomeScreen";
 
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+interface TabBars {
+  state: any;
+  descriptors: any;
+  navigation: any;
+}
+
+const MyTabBar = ({ state, descriptors, navigation }: TabBars) => {
+  return (
+    <View style={{ flexDirection: "row" }}>
+      {state.routes.map((route, index) => {
+        const { options } = descriptors[route.key];
+        const label =
+          options.tabBarLabel !== undefined
+            ? options.tabBarLabel
+            : options.title !== undefined
+            ? options.title
+            : route.name;
+
+        const isFocused = state.index === index;
+
+        const onPress = () => {
+          const event = navigation.emit({
+            type: "tabPress",
+            target: route.key,
+          });
+
+          if (!isFocused && !event.defaultPrevented) {
+            navigation.navigate(route.name);
+          }
+        };
+
+        const onLongPress = () => {
+          navigation.emit({
+            type: "tabLongPress",
+            target: route.key,
+          });
+        };
+
+        return (
+          <TouchableOpacity
+            key={route.name}
+            accessibilityRole="button"
+            accessibilityState={isFocused ? { selected: true } : {}}
+            accessibilityLabel={options.tabBarAccessibilityLabel}
+            testID={options.tabBarTestID}
+            onPress={onPress}
+            onLongPress={onLongPress}
+            style={{ flex: 1 }}
+          >
+            <Text style={tw`p-3 text-center text-blue-600 font-bold`}>
+              <MaterialCommunityIcons
+                name={route.name}
+                size={24}
+                color="#0096FF"
+              />
+            </Text>
+          </TouchableOpacity>
+        );
+      })}
+    </View>
+  );
+};
 
 export const App = () => {
   return (
     <TailwindProvider utilities={utilities}>
-      <NavigationContainer>
+      {/* <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen
             name="Home"
@@ -150,6 +200,39 @@ export const App = () => {
             options={{ title: "Vector Icons" }}
           />
         </Stack.Navigator>
+      </NavigationContainer> */}
+
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              return (
+                <MaterialCommunityIcons
+                  name={route.name}
+                  size={size}
+                  color={"#0096FF"}
+                />
+              );
+            },
+            tabBarActiveTintColor: "#0096FF",
+          })}
+        >
+          <Tab.Screen
+            name="home"
+            component={HomeScreen}
+            options={{ tabBarBadge: 3, title: "Home" }}
+          />
+          <Tab.Screen
+            name="cast-audio-variant"
+            component={AudioScreen}
+            options={{ title: "Audio" }}
+          />
+          <Tab.Screen
+            name="camera"
+            component={CameraScreen}
+            options={{ title: "Camera" }}
+          />
+        </Tab.Navigator>
       </NavigationContainer>
     </TailwindProvider>
   );

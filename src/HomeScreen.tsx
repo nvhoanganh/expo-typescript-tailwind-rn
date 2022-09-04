@@ -73,7 +73,7 @@ export const HomeScreen = (props: Props) => {
           source={{
             uri: "https://images.ctfassets.net/6asdyln2d6ar/6G4sPmUxW3EZjMl1iDweMi/5021cdfa89fccf64de9150f3bfc2423b/Brice-s_Profile_Photo.png",
           }}
-          style={{ width: 200, height: 200, alignSelf: "center" }}
+          style={{ width: 150, height: 150, alignSelf: "center" }}
         />
       </View>
       <View style={tw`pt-8`}>
@@ -106,6 +106,10 @@ export const HomeScreen = (props: Props) => {
         <Button
           onPress={() => navigate("LocationService")}
           title={"Location Service"}
+        />
+        <Button
+          onPress={() => navigate("AppleAuthentication")}
+          title={"Authentication with Apple"}
         />
       </View>
     </ScrollView>
