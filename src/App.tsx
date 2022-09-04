@@ -20,6 +20,7 @@ import { FontScreen } from "./demoScreens/FontScreen";
 import { GyroscopeScreen } from "./demoScreens/GyroscopeScreen";
 import { LinearGradientScreen } from "./demoScreens/LinearGradientScreen";
 import { LocalAuthenticationScreen } from "./demoScreens/LocalAuthenticationScreen";
+import LocationService from "./demoScreens/LocationService";
 import { MapViewScreen } from "./demoScreens/MapViewScreen";
 import RecordAudioScreen from "./demoScreens/RecordAudioScreen";
 import { SvgScreen } from "./demoScreens/SvgScreen";
@@ -67,6 +68,11 @@ export const App = () => {
             name="RecordAudio"
             component={RecordAudioScreen}
             options={{ title: "Record Audio" }}
+          />
+          <Stack.Screen
+            name="LocationService"
+            component={LocationService}
+            options={{ title: "Location Service" }}
           />
           <Stack.Screen
             name="BarCodeScanner"
