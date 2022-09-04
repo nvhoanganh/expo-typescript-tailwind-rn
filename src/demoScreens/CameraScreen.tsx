@@ -1,3 +1,4 @@
+import { Video } from "expo-av";
 import { Camera, PermissionStatus } from "expo-camera";
 import { CameraType } from "expo-camera/build/Camera.types";
 import React, { useEffect, useRef, useState } from "react";
@@ -13,7 +14,11 @@ export const CameraScreen = () => {
   useEffect(() => {
     const getPermission = async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermissionToCamera(status === PermissionStatus.GRANTED);
+      const result = await Camera.requestMicrophonePermissionsAsync();
+      setHasPermissionToCamera(
+        status === PermissionStatus.GRANTED &&
+          result.status === PermissionStatus.GRANTED
+      );
     };
 
     getPermission();
@@ -25,13 +30,38 @@ export const CameraScreen = () => {
     );
   };
 
-  const ref = useRef(null);
+  const ref = useRef<Camera>(null);
   const [photoTaken, setPhotoTaken] = useState();
+  const [videoTaken, setVideoTaken] = useState<string>(null);
+  const [isRecordingVideo, setIsRecordingVideo] = useState(false);
+
   const _takePhoto = async () => {
     const photo = await ref.current.takePictureAsync();
     setPhotoTaken(photo);
     console.debug(photo);
   };
+
+  const _recordVideo = () => {
+    setIsRecordingVideo(true);
+    ref.current
+      .recordAsync({
+        quality: "1080p",
+        maxDuration: 120,
+        mute: true,
+      })
+      .then(({ uri }) => {
+        console.debug(uri);
+        setVideoTaken(uri);
+      });
+  };
+
+  const _stopRecordingVideo = () => {
+    ref.current?.stopRecording();
+    setIsRecordingVideo(false);
+  };
+
+  const video = useRef(null);
+  const [status, setStatus] = useState({});
 
   if (hasPermissionToCamera === undefined) {
     return <Text>Getting permission to access the camera.</Text>;
@@ -44,7 +74,7 @@ export const CameraScreen = () => {
   return (
     <View style={tw`flex justify-center`}>
       <Camera
-        style={{ height: 400, width: "100%", alignSelf: "center" }}
+        style={{ height: 300, width: "100%", alignSelf: "center" }}
         type={cameraType}
         ref={ref}
       >
@@ -80,8 +110,20 @@ export const CameraScreen = () => {
       <View style={tw`pt-8`}>
         <Button
           onPress={_takePhoto}
-          title={"Take photo"}
+          title={"Take Photo"}
         />
+
+        {!isRecordingVideo ? (
+          <Button
+            onPress={_recordVideo}
+            title={"Record Video"}
+          />
+        ) : (
+          <Button
+            onPress={_stopRecordingVideo}
+            title={"Stop Recording"}
+          />
+        )}
 
         {photoTaken ? (
           <Image
@@ -90,6 +132,30 @@ export const CameraScreen = () => {
             }}
             style={{ width: "100%", height: 400, alignSelf: "center" }}
           />
+        ) : null}
+
+        {videoTaken ? (
+          <>
+            <Video
+              ref={video}
+              style={{ width: "100%", height: 400, alignSelf: "center" }}
+              source={{
+                uri: videoTaken,
+              }}
+              useNativeControls
+              resizeMode="contain"
+              isLooping
+              onPlaybackStatusUpdate={(status) => setStatus(() => status)}
+            />
+            <Button
+              title={status.isPlaying ? "Pause" : "Play"}
+              onPress={() =>
+                status.isPlaying
+                  ? video.current.pauseAsync()
+                  : video.current.playAsync()
+              }
+            />
+          </>
         ) : null}
       </View>
     </View>

@@ -97,7 +97,7 @@ export const HomeScreen = (props: Props) => {
         />
         <Button
           onPress={() => navigate("Camera")}
-          title={"Take photo"}
+          title={"Take Photo/Video"}
         />
       </View>
     </ScrollView>
