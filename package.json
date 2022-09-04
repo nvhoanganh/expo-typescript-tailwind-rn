@@ -40,6 +40,7 @@
     "expo-font": "~10.1.0",
     "expo-linear-gradient": "~11.3.0",
     "expo-local-authentication": "~12.2.0",
+    "expo-location": "~14.2.2",
     "expo-sensors": "~11.3.0",
     "expo-updates": "~0.13.3",
     "postcss": "^8.4.14",
