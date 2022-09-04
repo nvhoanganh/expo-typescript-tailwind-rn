@@ -91,26 +91,26 @@ export const HomeScreen = (props: Props) => {
           onPress={() => navigate("Audio")}
           title={"Hear My Favourite song"}
         />
-        <Button
+        {/* <Button
           onPress={() => navigate("RecordAudio")}
           title={"Record audio"}
-        />
+        /> */}
         <Button
           onPress={() => navigate("Camera")}
           title={"Take Photo/Video"}
         />
         <Button
           onPress={() => navigate("BarCodeScanner")}
-          title={"Bar Code Scanner"}
+          title={"QR Code Scanner"}
         />
-        <Button
+        {/* <Button
           onPress={() => navigate("LocationService")}
           title={"Location Service"}
         />
         <Button
           onPress={() => navigate("AppleAuthentication")}
           title={"Authentication with Apple"}
-        />
+        /> */}
       </View>
     </ScrollView>
   );

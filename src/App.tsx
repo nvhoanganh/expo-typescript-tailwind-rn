@@ -7,6 +7,7 @@ import tw from "twrnc";
 import utilities from "../tailwind.json";
 import { AudioScreen } from "./demoScreens/AudioScreen";
 import { CameraScreen } from "./demoScreens/CameraScreen";
+import QRCodeScanner from "./demoScreens/QRCodeScanner";
 import { HomeScreen } from "./HomeScreen";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -83,6 +84,7 @@ const TAB_ICONS = {
   Home: "home",
   Audio: "cast-audio-variant",
   Camera: "camera",
+  BarCodeScanner: "qrcode",
 };
 export const App = () => {
   return (
@@ -238,6 +240,10 @@ export const App = () => {
           <Tab.Screen
             name="Camera"
             component={CameraScreen}
+          />
+          <Tab.Screen
+            name="BarCodeScanner"
+            component={QRCodeScanner}
           />
         </Tab.Navigator>
       </NavigationContainer>
