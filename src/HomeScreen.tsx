@@ -95,6 +95,10 @@ export const HomeScreen = (props: Props) => {
           onPress={() => navigate("RecordAudio")}
           title={"Record audio"}
         />
+        <Button
+          onPress={() => navigate("Camera")}
+          title={"Take photo"}
+        />
       </View>
     </ScrollView>
   );

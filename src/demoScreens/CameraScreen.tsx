@@ -1,7 +1,8 @@
 import { Camera, PermissionStatus } from "expo-camera";
 import { CameraType } from "expo-camera/build/Camera.types";
-import React, { useEffect, useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { Button, Image, Text, TouchableOpacity, View } from "react-native";
+import tw from "twrnc";
 
 export const CameraScreen = () => {
   const [cameraType, setCameraType] = useState(CameraType.back);
@@ -24,6 +25,14 @@ export const CameraScreen = () => {
     );
   };
 
+  const ref = useRef(null);
+  const [photoTaken, setPhotoTaken] = useState();
+  const _takePhoto = async () => {
+    const photo = await ref.current.takePictureAsync();
+    setPhotoTaken(photo);
+    console.debug(photo);
+  };
+
   if (hasPermissionToCamera === undefined) {
     return <Text>Getting permission to access the camera.</Text>;
   }
@@ -33,10 +42,11 @@ export const CameraScreen = () => {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={tw`flex justify-center`}>
       <Camera
-        style={{ flex: 1 }}
+        style={{ height: 400, width: "100%", alignSelf: "center" }}
         type={cameraType}
+        ref={ref}
       >
         <View
           style={{
@@ -67,6 +77,21 @@ export const CameraScreen = () => {
           </TouchableOpacity>
         </View>
       </Camera>
+      <View style={tw`pt-8`}>
+        <Button
+          onPress={_takePhoto}
+          title={"Take photo"}
+        />
+
+        {photoTaken ? (
+          <Image
+            source={{
+              uri: photoTaken.uri,
+            }}
+            style={{ width: "100%", height: 400, alignSelf: "center" }}
+          />
+        ) : null}
+      </View>
     </View>
   );
 };
