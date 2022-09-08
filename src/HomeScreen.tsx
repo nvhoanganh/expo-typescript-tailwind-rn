@@ -12,6 +12,9 @@ import {
 } from "react-native";
 import tw from "twrnc";
 
+import * as AuthSession from "expo-auth-session";
+import * as WebBrowser from "expo-web-browser";
+
 type HomeStackParametersList = {
   Accelerometer: undefined;
   Amplitude: undefined;
@@ -50,6 +53,14 @@ const Input = ({ control, name }: { control: any; name: string }) => {
   );
 };
 
+WebBrowser.maybeCompleteAuthSession();
+
+const useProxy = true;
+
+const redirectUri = AuthSession.makeRedirectUri({
+  useProxy,
+});
+
 export const HomeScreen = (props: Props) => {
   const navigate = props.navigation.navigate;
   const { control, handleSubmit } = useForm({
@@ -61,6 +72,20 @@ export const HomeScreen = (props: Props) => {
   const onSubmit = (data) => {
     Alert.alert(JSON.stringify(data));
   };
+
+  const discovery = AuthSession.useAutoDiscovery(
+    "https://demo.duendesoftware.com"
+  );
+
+  // Create and load an auth request
+  const [request, result, promptAsync] = AuthSession.useAuthRequest(
+    {
+      clientId: "interactive.confidential",
+      redirectUri,
+      scopes: ["openid", "profile", "email", "offline_access"],
+    },
+    discovery
+  );
 
   return (
     <ScrollView style={tw`p-2`}>
@@ -85,6 +110,13 @@ export const HomeScreen = (props: Props) => {
         />
       </View>
       <View style={tw`pt-8`}>
+        {result && <Text>{JSON.stringify(result, null, 2)}</Text>}
+
+        <Button
+          disabled={!request}
+          onPress={() => promptAsync({ useProxy })}
+          title={"Login using OAuth2"}
+        />
         <Button
           onPress={() => navigate("Audio")}
           title={"Hear My Favourite song"}
