@@ -80,9 +80,9 @@ export const HomeScreen = (props: Props) => {
   // Create and load an auth request
   const [request, result, promptAsync] = AuthSession.useAuthRequest(
     {
-      clientId: "interactive.confidential",
+      clientId: "interactive.public",
       redirectUri,
-      scopes: ["openid", "profile", "email", "offline_access"],
+      scopes: ["openid", "profile", "email", "offline_access", "api"],
     },
     discovery
   );
