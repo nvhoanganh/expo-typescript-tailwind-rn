@@ -1,5 +1,5 @@
 import { StackNavigationProp } from "@react-navigation/stack";
-import React from "react";
+import React, { useEffect } from "react";
 import { useController, useForm } from "react-hook-form";
 import {
   Alert,
@@ -74,18 +74,43 @@ export const HomeScreen = (props: Props) => {
   };
 
   const discovery = AuthSession.useAutoDiscovery(
-    "https://demo.duendesoftware.com"
+    // "https://avtab2ctest.b2clogin.com/avtab2ctest.onmicrosoft.com/b2c_1_signupsignin1/"
+    // "https://login.microsoftonline.com/avtab2ctest.onmicrosoft.com/v2.0/.well-known/openid-configuration"
+    "https://login.microsoftonline.com/avtab2ctest.onmicrosoft.com/v2.0"
   );
 
   // Create and load an auth request
   const [request, result, promptAsync] = AuthSession.useAuthRequest(
     {
-      clientId: "interactive.public",
+      clientId: "5555cf9a-0d7d-4567-850b-45ce0c131c85",
       redirectUri,
-      scopes: ["openid", "profile", "email", "offline_access", "api"],
+      scopes: [
+        "https://avtab2ctest.onmicrosoft.com/dc624bfc-8e8e-4a12-9c41-983afa80afc7/demo.read",
+      ],
     },
     discovery
   );
+
+  useEffect(() => {
+    if (result) {
+      console.log("Got login result from expo", result.params.code);
+      const req = new AuthSession.AccessTokenRequest({
+        code: result.params.code,
+        redirectUri: redirectUri,
+        clientId: "5555cf9a-0d7d-4567-850b-45ce0c131c85",
+        scopes: ["openid", "profile", "email", "offline_access", "api"],
+      });
+
+      req
+        .performAsync(discovery)
+        .then((x) => {
+          console.log("access token request is ", x);
+        })
+        .catch((e) => {
+          console.log("failed to get access token", e);
+        });
+    }
+  }, [result]);
 
   return (
     <ScrollView style={tw`p-2`}>
