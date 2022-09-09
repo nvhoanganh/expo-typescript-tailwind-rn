@@ -85,6 +85,10 @@ export const HomeScreen = (props: Props) => {
       clientId: "5555cf9a-0d7d-4567-850b-45ce0c131c85",
       redirectUri,
       scopes: [
+        "openid",
+        "profile",
+        "email",
+        "offline_access",
         "https://avtab2ctest.onmicrosoft.com/dc624bfc-8e8e-4a12-9c41-983afa80afc7/demo.read",
       ],
     },
@@ -92,13 +96,16 @@ export const HomeScreen = (props: Props) => {
   );
 
   useEffect(() => {
-    if (result) {
-      console.log("Got login result from expo", result.params.code);
+    if (result && result?.params?.code) {
+      console.log("Got login result from expo:");
+      console.log(result);
       const req = new AuthSession.AccessTokenRequest({
         code: result.params.code,
         redirectUri: redirectUri,
         clientId: "5555cf9a-0d7d-4567-850b-45ce0c131c85",
-        scopes: ["openid", "profile", "email", "offline_access", "api"],
+        scopes: [
+          "https://avtab2ctest.onmicrosoft.com/dc624bfc-8e8e-4a12-9c41-983afa80afc7/demo.read",
+        ],
       });
 
       req
