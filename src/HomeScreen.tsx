@@ -84,6 +84,7 @@ export const HomeScreen = (props: Props) => {
     {
       clientId: "5555cf9a-0d7d-4567-850b-45ce0c131c85",
       redirectUri,
+      usePKCE: true,
       scopes: [
         "openid",
         "profile",
@@ -99,6 +100,9 @@ export const HomeScreen = (props: Props) => {
     if (result && result?.params?.code) {
       console.log("Got login result from expo:");
       console.log(result);
+      console.log("request object is");
+      console.log(request);
+
       const req = new AuthSession.AccessTokenRequest({
         code: result.params.code,
         redirectUri: redirectUri,
@@ -106,6 +110,9 @@ export const HomeScreen = (props: Props) => {
         scopes: [
           "https://avtab2ctest.onmicrosoft.com/dc624bfc-8e8e-4a12-9c41-983afa80afc7/demo.read",
         ],
+        extraParams: {
+          code_verifier: request.codeVerifier,
+        },
       });
 
       req
