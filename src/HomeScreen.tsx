@@ -1,5 +1,5 @@
 import { StackNavigationProp } from "@react-navigation/stack";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useController, useForm } from "react-hook-form";
 import {
   Alert,
@@ -73,43 +73,43 @@ export const HomeScreen = (props: Props) => {
     Alert.alert(JSON.stringify(data));
   };
 
-  const discovery = AuthSession.useAutoDiscovery(
-    // "https://avtab2ctest.b2clogin.com/avtab2ctest.onmicrosoft.com/b2c_1_signupsignin1/"
-    // "https://login.microsoftonline.com/avtab2ctest.onmicrosoft.com/v2.0/.well-known/openid-configuration"
-    "https://login.microsoftonline.com/avtab2ctest.onmicrosoft.com/v2.0"
-  );
+  // Identity Server 4
+  const clientId = "interactive.public";
+  const scopes = ["openid", "profile", "email", "offline_access", "api"];
+  const discoveryUrl = "https://demo.duendesoftware.com";
+
+  // Azure B2C
+  // const clientId = "5555cf9a-0d7d-4567-850b-45ce0c131c85";
+  // const scopes = [
+  //   "openid",
+  //   "profile",
+  //   "email",
+  //   "offline_access",
+  //   "https://avtab2ctest.onmicrosoft.com/dc624bfc-8e8e-4a12-9c41-983afa80afc7/demo.read",
+  // ];
+  // const discoveryUrl = "https://login.microsoftonline.com/avtab2ctest.onmicrosoft.com/v2.0"
+
+  const discovery = AuthSession.useAutoDiscovery(discoveryUrl);
 
   // Create and load an auth request
   const [request, result, promptAsync] = AuthSession.useAuthRequest(
     {
-      clientId: "5555cf9a-0d7d-4567-850b-45ce0c131c85",
+      clientId: clientId,
       redirectUri,
       usePKCE: true,
-      scopes: [
-        "openid",
-        "profile",
-        "email",
-        "offline_access",
-        "https://avtab2ctest.onmicrosoft.com/dc624bfc-8e8e-4a12-9c41-983afa80afc7/demo.read",
-      ],
+      scopes: scopes,
     },
     discovery
   );
 
+  const [token, setToken] = useState();
   useEffect(() => {
     if (result && result?.params?.code) {
-      console.log("Got login result from expo:");
-      console.log(result);
-      console.log("request object is");
-      console.log(request);
-
       const req = new AuthSession.AccessTokenRequest({
         code: result.params.code,
         redirectUri: redirectUri,
-        clientId: "5555cf9a-0d7d-4567-850b-45ce0c131c85",
-        scopes: [
-          "https://avtab2ctest.onmicrosoft.com/dc624bfc-8e8e-4a12-9c41-983afa80afc7/demo.read",
-        ],
+        clientId: clientId,
+        scopes: scopes,
         extraParams: {
           code_verifier: request.codeVerifier,
         },
@@ -117,14 +117,30 @@ export const HomeScreen = (props: Props) => {
 
       req
         .performAsync(discovery)
-        .then((x) => {
-          console.log("access token request is ", x);
-        })
+        .then((x) => setToken(x))
         .catch((e) => {
           console.log("failed to get access token", e);
         });
     }
   }, [result]);
+
+  const [claims, setClaims] = useState(null);
+  useEffect(() => {
+    if (token) {
+      fetch("https://demo.duendesoftware.com/api/test", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token.accessToken}`,
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => setClaims(json))
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [token]);
 
   return (
     <ScrollView style={tw`p-2`}>
@@ -149,8 +165,9 @@ export const HomeScreen = (props: Props) => {
         />
       </View>
       <View style={tw`pt-8`}>
-        {result && <Text>{JSON.stringify(result, null, 2)}</Text>}
-
+        {claims && (
+          <Text>Hi, {claims.find((x) => x.type === "name").value}</Text>
+        )}
         <Button
           disabled={!request}
           onPress={() => promptAsync({ useProxy })}
