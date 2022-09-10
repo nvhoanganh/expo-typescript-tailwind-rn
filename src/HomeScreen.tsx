@@ -133,6 +133,7 @@ export const HomeScreen = (props: Props) => {
         .then((response) => response.json())
         .then((json) => {
           setClaims(json);
+          // get name from token
           const name = json.find((x) => x.type === "name").value;
           setValue("name", name);
         })
