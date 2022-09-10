@@ -63,11 +63,7 @@ const redirectUri = AuthSession.makeRedirectUri({
 
 export const HomeScreen = (props: Props) => {
   const navigate = props.navigation.navigate;
-  const { control, handleSubmit } = useForm({
-    defaultValues: {
-      name: "The name's Bond, James Bond",
-    },
-  });
+  const { control, handleSubmit, setValue } = useForm({});
 
   const onSubmit = (data) => {
     Alert.alert(JSON.stringify(data));
@@ -135,7 +131,11 @@ export const HomeScreen = (props: Props) => {
         },
       })
         .then((response) => response.json())
-        .then((json) => setClaims(json))
+        .then((json) => {
+          setClaims(json);
+          const name = json.find((x) => x.type === "name").value;
+          setValue("name", name);
+        })
         .catch((error) => {
           console.error(error);
         });
@@ -144,30 +144,34 @@ export const HomeScreen = (props: Props) => {
 
   return (
     <ScrollView style={tw`p-2`}>
-      <Text style={tw`text-center p-3 text-3xl`}>James Bond</Text>
-      <View style={tw`flex justify-center`}>
-        <Text style={tw`text-center py-5 text-lg`}>007</Text>
-        <Image
-          source={{
-            uri: "https://static.wikia.nocookie.net/jamesbond/images/b/b2/James_Bond_%28Sean_Connery%29_-_Profile.jpg/revision/latest?cb=20220103094711",
-          }}
-          style={{ width: 150, height: 150, alignSelf: "center" }}
-        />
-      </View>
+      {claims && (
+        <View style={tw`pt-8`}>
+          <Text style={tw`text-center p-3 text-3xl`}>
+            {claims.find((x) => x.type === "name").value}
+          </Text>
+          <View style={tw`flex justify-center`}>
+            <Image
+              source={{
+                uri: "https://static.wikia.nocookie.net/jamesbond/images/b/b2/James_Bond_%28Sean_Connery%29_-_Profile.jpg/revision/latest?cb=20220103094711",
+              }}
+              style={{ width: 150, height: 150, alignSelf: "center" }}
+            />
+          </View>
+          <View style={tw`pt-8`}>
+            <Text style={tw`text-left p-3 font-bold`}>Full name:</Text>
+            <Input
+              control={control}
+              name="name"
+            />
+            <Button
+              title={"Save Profile"}
+              onPress={handleSubmit(onSubmit)}
+            />
+          </View>
+        </View>
+      )}
+
       <View style={tw`pt-8`}>
-        <Input
-          control={control}
-          name="name"
-        />
-        <Button
-          title={"Save Profile"}
-          onPress={handleSubmit(onSubmit)}
-        />
-      </View>
-      <View style={tw`pt-8`}>
-        {claims && (
-          <Text>Hi, {claims.find((x) => x.type === "name").value}</Text>
-        )}
         <Button
           disabled={!request}
           onPress={() => promptAsync({ useProxy })}
