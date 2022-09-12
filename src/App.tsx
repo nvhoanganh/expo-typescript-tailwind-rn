@@ -13,6 +13,8 @@ import { HomeScreen } from "./HomeScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import SignPad from "./demoScreens/SignatureScreen/SignPad";
+import SketchPad from "./demoScreens/SketchPad/SketchPad";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -40,7 +42,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBars) => {
         const onPress = () => {
           const event = navigation.emit({
             type: "tabPress",
-            target: route.key,
+            target: route.key
           });
 
           if (!isFocused && !event.defaultPrevented) {
@@ -51,7 +53,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBars) => {
         const onLongPress = () => {
           navigation.emit({
             type: "tabLongPress",
-            target: route.key,
+            target: route.key
           });
         };
 
@@ -85,6 +87,8 @@ const TAB_ICONS = {
   Audio: "cast-audio-variant",
   Camera: "camera",
   BarCodeScanner: "qrcode",
+  Signature: "qrcode",
+  SketchPad: "qrcode"
 };
 export const App = () => {
   return (
@@ -223,14 +227,14 @@ export const App = () => {
                   color={focused ? "#0096FF" : "#7393B3"}
                 />
               );
-            },
+            }
           })}
         >
           <Tab.Screen
             name="Home"
             component={HomeScreen}
             options={{
-              tabBarBadge: 3,
+              tabBarBadge: 3
             }}
           />
           <Tab.Screen
@@ -244,6 +248,14 @@ export const App = () => {
           <Tab.Screen
             name="BarCodeScanner"
             component={QRCodeScanner}
+          />
+          <Tab.Screen
+            name="Signature"
+            component={SignPad}
+          />
+          <Tab.Screen
+            name="SketchPad"
+            component={SketchPad}
           />
         </Tab.Navigator>
       </NavigationContainer>

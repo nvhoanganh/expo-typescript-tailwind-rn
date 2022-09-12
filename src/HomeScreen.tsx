@@ -8,7 +8,7 @@ import {
   ScrollView,
   Text,
   TextInput,
-  View,
+  View
 } from "react-native";
 import tw from "twrnc";
 
@@ -22,6 +22,7 @@ type HomeStackParametersList = {
   Asset: undefined;
   Audio: undefined;
   BarCodeScanner: undefined;
+  Signature: undefined;
   BlurView: undefined;
   Camera: undefined;
   Constants: undefined;
@@ -42,7 +43,7 @@ interface Props {
 const Input = ({ control, name }: { control: any; name: string }) => {
   const { field } = useController({
     control,
-    name: name,
+    name: name
   });
   return (
     <TextInput
@@ -58,7 +59,7 @@ WebBrowser.maybeCompleteAuthSession();
 const useProxy = true;
 
 const redirectUri = AuthSession.makeRedirectUri({
-  useProxy,
+  useProxy
 });
 
 export const HomeScreen = (props: Props) => {
@@ -93,7 +94,7 @@ export const HomeScreen = (props: Props) => {
       clientId: clientId,
       redirectUri,
       usePKCE: true,
-      scopes: scopes,
+      scopes: scopes
     },
     discovery
   );
@@ -107,8 +108,8 @@ export const HomeScreen = (props: Props) => {
         clientId: clientId,
         scopes: scopes,
         extraParams: {
-          code_verifier: request.codeVerifier,
-        },
+          code_verifier: request.codeVerifier
+        }
       });
 
       req
@@ -127,8 +128,8 @@ export const HomeScreen = (props: Props) => {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token.accessToken}`,
-          "Content-Type": "application/json",
-        },
+          "Content-Type": "application/json"
+        }
       })
         .then((response) => response.json())
         .then((json) => {
@@ -153,7 +154,7 @@ export const HomeScreen = (props: Props) => {
           <View style={tw`flex justify-center`}>
             <Image
               source={{
-                uri: "https://static.wikia.nocookie.net/jamesbond/images/b/b2/James_Bond_%28Sean_Connery%29_-_Profile.jpg/revision/latest?cb=20220103094711",
+                uri: "https://static.wikia.nocookie.net/jamesbond/images/b/b2/James_Bond_%28Sean_Connery%29_-_Profile.jpg/revision/latest?cb=20220103094711"
               }}
               style={{ width: 150, height: 150, alignSelf: "center" }}
             />
@@ -193,6 +194,10 @@ export const HomeScreen = (props: Props) => {
         <Button
           onPress={() => navigate("BarCodeScanner")}
           title={"QR Code Scanner"}
+        />
+        <Button
+          onPress={() => navigate("Signature")}
+          title={"Sign pad"}
         />
         {/* <Button
           onPress={() => navigate("LocationService")}
