@@ -1,15 +1,7 @@
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect, useState } from "react";
 import { useController, useForm } from "react-hook-form";
-import {
-  Alert,
-  Button,
-  Image,
-  ScrollView,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Alert, Button, ScrollView, TextInput, View } from "react-native";
 import tw from "twrnc";
 
 import * as AuthSession from "expo-auth-session";
@@ -61,7 +53,7 @@ const redirectUri = AuthSession.makeRedirectUri({
   useProxy,
 });
 
-export const HomeScreen = (props: Props) => {
+export const FeaturesScreen = (props: Props) => {
   const navigate = props.navigation.navigate;
   const { control, handleSubmit, setValue } = useForm({});
 
@@ -145,42 +137,30 @@ export const HomeScreen = (props: Props) => {
 
   return (
     <ScrollView style={tw`p-2`}>
-      {claims && (
-        <View style={tw`pt-8`}>
-          <Text style={tw`text-center p-3 text-3xl`}>
-            {claims.find((x) => x.type === "name").value}
-          </Text>
-          <View style={tw`flex justify-center`}>
-            <Image
-              source={{
-                uri: "https://static.wikia.nocookie.net/jamesbond/images/b/b2/James_Bond_%28Sean_Connery%29_-_Profile.jpg/revision/latest?cb=20220103094711",
-              }}
-              style={{ width: 150, height: 150, alignSelf: "center" }}
-            />
-          </View>
-          <View style={tw`pt-8`}>
-            <Text style={tw`text-left p-3 font-bold`}>Full name:</Text>
-            <Input
-              control={control}
-              name="name"
-            />
-            <Button
-              title={"Save Profile"}
-              onPress={handleSubmit(onSubmit)}
-            />
-          </View>
-        </View>
-      )}
-
       <View style={tw`pt-8`}>
         <Button
-          disabled={!request}
-          onPress={() => promptAsync({ useProxy })}
-          title={"Login using OAuth2"}
+          onPress={() => navigate("Audio")}
+          title={"Hear My Favourite song"}
         />
         <Button
-          onPress={() => navigate("Audio")}
-          title={"Jump to Features/Audio"}
+          onPress={() => navigate("RecordAudio")}
+          title={"Record audio"}
+        />
+        <Button
+          onPress={() => navigate("Camera")}
+          title={"Take Photo/Video"}
+        />
+        <Button
+          onPress={() => navigate("BarCodeScanner")}
+          title={"QR Code Scanner"}
+        />
+        <Button
+          onPress={() => navigate("LocationService")}
+          title={"Location Service"}
+        />
+        <Button
+          onPress={() => navigate("AppleAuthentication")}
+          title={"Authentication with Apple"}
         />
       </View>
     </ScrollView>
