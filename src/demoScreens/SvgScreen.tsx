@@ -1,8 +1,13 @@
+import { StackNavigationProp } from "@react-navigation/stack";
 import React from "react";
-import { View } from "react-native";
+import { Button, View } from "react-native";
 import Svg, { G, Path } from "react-native-svg";
 
-export const SvgScreen = () => (
+interface Props {
+  navigation: StackNavigationProp;
+}
+
+export const SvgScreen = (props: Props) => (
   <View
     style={{
       alignItems: "center",
@@ -21,5 +26,9 @@ export const SvgScreen = () => (
         />
       </G>
     </Svg>
+    <Button
+      onPress={() => props.navigation.navigate("Home")}
+      title={"Go Home"}
+    />
   </View>
 );
