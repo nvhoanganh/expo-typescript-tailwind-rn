@@ -34,7 +34,6 @@ target 'Reactnativetailwindhookform' do
   # end
 
 
-  pod 'RNSketchCanvas', :path => '../node_modules/@terrylinla/react-native-sketch-canvas'
 
   post_install do |installer|
     react_native_post_install(installer)

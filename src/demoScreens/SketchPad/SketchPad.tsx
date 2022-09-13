@@ -1,4 +1,4 @@
-import RNSketchCanvas from "@terrylinla/react-native-sketch-canvas";
+import RNSketchCanvas from "@kichiyaki/react-native-sketch-canvas";
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import tw from "twrnc";

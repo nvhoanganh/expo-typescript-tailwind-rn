@@ -440,7 +440,7 @@ PODS:
   - RNScreens (3.11.1):
     - React-Core
     - React-RCTImage
-  - RNSketchCanvas (0.8.0):
+  - RNSketchCanvas (0.8.10):
     - React
   - RNSVG (12.3.0):
     - React-Core
@@ -520,7 +520,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
-  - "RNSketchCanvas (from `../node_modules/@terrylinla/react-native-sketch-canvas`)"
+  - "RNSketchCanvas (from `../node_modules/@kichiyaki/react-native-sketch-canvas`)"
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -667,7 +667,7 @@ EXTERNAL SOURCES:
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSketchCanvas:
-    :path: "../node_modules/@terrylinla/react-native-sketch-canvas"
+    :path: "../node_modules/@kichiyaki/react-native-sketch-canvas"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   Yoga:
@@ -745,11 +745,11 @@ SPEC CHECKSUMS:
   RNGestureHandler: 1dc1ea9d4b64f999042afafbaccf5b143f0b2fa2
   RNReanimated: 64573e25e078ae6bec03b891586d50b9ec284393
   RNScreens: 4d83613b50b74ed277026375dc0810893b0c347f
-  RNSketchCanvas: 9c28adb5381543ed55cc98ce6de46479cb3cb12c
+  RNSketchCanvas: 870ac64dbf6693993a7df9d8d1e3f6ba285c329c
   RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
   Yoga: 99652481fcd320aefa4a7ef90095b95acd181952
   ZXingObjC: fdbb269f25dd2032da343e06f10224d62f537bdb
 
-PODFILE CHECKSUM: 3741afbeb7d14872ab310872ad6c25591c9db496
+PODFILE CHECKSUM: fed63c05013b97e35f5cac363b9b074f9f7ea825
 
 COCOAPODS: 1.11.3

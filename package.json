@@ -23,10 +23,10 @@
     "yarn": ">=1.1"
   },
   "dependencies": {
+    "@kichiyaki/react-native-sketch-canvas": "^0.8.10",
     "@react-navigation/bottom-tabs": "^6.3.3",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/stack": "^6.2.1",
-    "@terrylinla/react-native-sketch-canvas": "^0.8.0",
     "concurrently": "^7.3.0",
     "expo": "^45.0.0",
     "expo-analytics-amplitude": "~11.2.0",
