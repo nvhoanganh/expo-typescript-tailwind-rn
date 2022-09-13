@@ -34,9 +34,10 @@ type HomeStackParametersList = {
   MapView: undefined;
   Svg: undefined;
   VectorIcons: undefined;
+  SketchPadWithAuth: undefined;
 };
 
-interface Props {
+export interface Props {
   navigation: StackNavigationProp<HomeStackParametersList>;
 }
 
@@ -199,6 +200,11 @@ export const HomeScreen = (props: Props) => {
           onPress={() => navigate("Signature")}
           title={"Sign pad"}
         />
+        <Button
+          onPress={() => navigate("SketchPad")}
+          title={"Sketch pad"}
+        />
+
         {/* <Button
           onPress={() => navigate("LocationService")}
           title={"Location Service"}

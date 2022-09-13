@@ -45,9 +45,9 @@ PODS:
     - ExpoModulesCore
   - EXLocation (14.2.2):
     - ExpoModulesCore
-  - EXManifests (0.3.0):
+  - EXManifests (0.3.1):
     - EXJSONUtils
-  - Expo (45.0.6):
+  - Expo (45.0.8):
     - ExpoModulesCore
   - ExpoCrypto (10.2.0):
     - ExpoModulesCore
@@ -68,7 +68,7 @@ PODS:
     - ExpoModulesCore
     - React-Core
   - EXStructuredHeaders (2.2.1)
-  - EXUpdates (0.13.3):
+  - EXUpdates (0.13.4):
     - ASN1Decoder (~> 1.8)
     - EASClient
     - EXManifests
@@ -306,12 +306,14 @@ PODS:
     - glog
   - react-native-maps (0.30.2):
     - React-Core
-  - react-native-safe-area-context (4.2.4):
+  - react-native-safe-area-context (4.3.3):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
-    - React
+    - React-Core
     - ReactCommon/turbomodule/core
+  - react-native-simple-biometrics (1.5.0):
+    - React-Core
   - react-native-webview (11.18.1):
     - React-Core
   - React-perflogger (0.68.2)
@@ -437,7 +439,7 @@ PODS:
     - React-RCTText
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.11.1):
+  - RNScreens (3.17.0):
     - React-Core
     - React-RCTImage
   - RNSketchCanvas (0.8.10):
@@ -504,6 +506,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-simple-biometrics (from `../node_modules/react-native-simple-biometrics`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -634,6 +637,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-simple-biometrics:
+    :path: "../node_modules/react-native-simple-biometrics"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   React-perflogger:
@@ -695,8 +700,8 @@ SPEC CHECKSUMS:
   EXJSONUtils: 2a74b8f40f1523cc3f92af99c91aa78201737a77
   EXLocalAuthentication: 7f37b242eae73f9acf111d39bdee3f1379e68902
   EXLocation: f9811c5a78e07894429e7e0620b30f2395564fc0
-  EXManifests: 0c6134b7b6f3236a93a778c3f44ba1cfb3f9fa3d
-  Expo: 3df4af520db4f37f9821ba732ce9ac0dc67bb7b8
+  EXManifests: b38dc61303f5eede990b4c8ecbfac32f82160e65
+  Expo: 1133eaf0e12dc265ac82a256f3815401b7570f96
   ExpoCrypto: d0d0f3e20875dc450b4ec88f0fb608da5c2c6c17
   ExpoKeepAwake: c0c494b442ecd8122974c13b93ccfb57bd408e88
   ExpoLinearGradient: 0debcf7d6cd7fea3050c218544f0db2de9a64f42
@@ -706,7 +711,7 @@ SPEC CHECKSUMS:
   EXSensors: 58f44cda1b3fe15fd7afa5b0ec34c90be36571ed
   EXSplashScreen: 34f460788db8d682883871708dddbfac72095bb7
   EXStructuredHeaders: 5d86829469399370a9fc7cb1e4391b09de87681d
-  EXUpdates: 084edfaac900e6bc77ab4027eaf7437a4236b8c3
+  EXUpdates: f8d0170faaf3032912284693ef07f4d57288e14e
   EXUpdatesInterface: 0b101ace1dbfa0f64260a5df31c71d03c66cca54
   FacebookSDK: 4b9bb8e2824898b47f18c666dc145c09b40609e6
   FBLazyVector: a7a655862f6b09625d11c772296b01cd5164b648
@@ -728,7 +733,8 @@ SPEC CHECKSUMS:
   React-jsinspector: c5989c77cb89ae6a69561095a61cce56a44ae8e8
   React-logger: a0833912d93b36b791b7a521672d8ee89107aff1
   react-native-maps: df7b9fca1b1c8d356fadbf5b8a63a5f8cf32fc73
-  react-native-safe-area-context: f98b0b16d1546d208fc293b4661e3f81a895afd9
+  react-native-safe-area-context: b456e1c40ec86f5593d58b275bd0e9603169daca
+  react-native-simple-biometrics: 4bc1215dc5df55e728b246b52a29f811c842ef30
   react-native-webview: 0b7bd2bffced115aefd393e1841babd9b9a557b1
   React-perflogger: a18b4f0bd933b8b24ecf9f3c54f9bf65180f3fe6
   React-RCTActionSheet: 547fe42fdb4b6089598d79f8e1d855d7c23e2162
@@ -744,7 +750,7 @@ SPEC CHECKSUMS:
   ReactCommon: 095366164a276d91ea704ce53cb03825c487a3f2
   RNGestureHandler: 1dc1ea9d4b64f999042afafbaccf5b143f0b2fa2
   RNReanimated: 64573e25e078ae6bec03b891586d50b9ec284393
-  RNScreens: 4d83613b50b74ed277026375dc0810893b0c347f
+  RNScreens: 0df01424e9e0ed7827200d6ed1087ddd06c493f9
   RNSketchCanvas: 870ac64dbf6693993a7df9d8d1e3f6ba285c329c
   RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
   Yoga: 99652481fcd320aefa4a7ef90095b95acd181952

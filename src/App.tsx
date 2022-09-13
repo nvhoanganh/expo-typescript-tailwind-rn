@@ -90,6 +90,7 @@ const TAB_ICONS = {
   Signature: "signature-freehand",
   SketchPad: "draw"
 };
+
 export const App = () => {
   return (
     <TailwindProvider utilities={utilities}>
