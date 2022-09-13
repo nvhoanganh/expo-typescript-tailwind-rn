@@ -87,8 +87,8 @@ const TAB_ICONS = {
   Audio: "cast-audio-variant",
   Camera: "camera",
   BarCodeScanner: "qrcode",
-  Signature: "qrcode",
-  SketchPad: "qrcode"
+  Signature: "signature-freehand",
+  SketchPad: "draw"
 };
 export const App = () => {
   return (

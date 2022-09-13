@@ -8,7 +8,6 @@
   },
   "private": true,
   "license": "MIT",
-  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer && tailwind-rn",
     "dev:tailwind": "concurrently \"tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch\" \"tailwind-rn --watch\"",
@@ -16,7 +15,7 @@
     "check-types": "tsc",
     "ios": "yarn run start --ios",
     "lint": "eslint --format unix \"**/*.ts\" \"**/*.tsx\"",
-    "start": "yarn install && expo start",
+    "start": "expo start --dev-client",
     "validate": "yarn install --frozen-lockfile && yarn run lint && yarn run check-types"
   },
   "engines": {
@@ -27,6 +26,7 @@
     "@react-navigation/bottom-tabs": "^6.3.3",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/stack": "^6.2.1",
+    "@terrylinla/react-native-sketch-canvas": "^0.8.0",
     "concurrently": "^7.3.0",
     "expo": "^45.0.0",
     "expo-analytics-amplitude": "~11.2.0",
@@ -45,10 +45,13 @@
     "expo-location": "~14.2.2",
     "expo-random": "~12.2.0",
     "expo-sensors": "~11.3.0",
+    "expo-splash-screen": "~0.15.1",
+    "expo-status-bar": "~1.3.0",
     "expo-updates": "~0.13.3",
     "expo-web-browser": "^11.0.0",
     "postcss": "^8.4.14",
     "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-hook-form": "^7.34.2",
     "react-native": "0.68.2",
     "react-native-gesture-handler": "~2.2.1",
@@ -58,7 +61,8 @@
     "react-native-screens": "~3.11.1",
     "react-native-signature-canvas": "^4.4.1",
     "react-native-svg": "12.3.0",
-    "react-native-webview": "^11.23.1",
+    "react-native-web": "0.17.7",
+    "react-native-webview": "11.18.1",
     "tailwind-rn": "^4.2.0",
     "tailwindcss": "^3.1.6",
     "twrnc": "^3.3.3"
@@ -74,7 +78,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
-    "expo-cli": "^5.4.3",
+    "expo-cli": "^6.0.5",
     "prettier": "^2.6.2",
     "typescript": "~4.3.5"
   },

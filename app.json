@@ -4,7 +4,10 @@
     "description": "Showcase of an Expo app coded in TypeScript with Tailwind CSS.",
     "slug": "expo-and-typescript",
     "privacy": "public",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "0.0.0",
     "orientation": "portrait",
     "primaryColor": "#fff",
@@ -17,11 +20,17 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["assets/**/*"],
+    "assetBundlePatterns": [
+      "assets/**/*"
+    ],
     "ios": {
       "supportsTablet": true,
-      "usesAppleSignIn": true
+      "usesAppleSignIn": true,
+      "bundleIdentifier": "RNPOC.Ios"
     },
-    "githubUrl": "https://github.com/jongan69/expo-typescript-tailwind-rn"
+    "githubUrl": "https://github.com/jongan69/expo-typescript-tailwind-rn",
+    "android": {
+      "package": "RNPOC.Android"
+    }
   }
 }
